@@ -4,7 +4,7 @@ import type {
   DoStuffEvent,
   ExtensionVerseDataProvider,
   ExtensionVerseDataTypes,
-} from 'paranext-extension-template';
+} from 'paranext-extension-template-hello-world';
 import { Button } from 'papi-components';
 import type { QuickVerseDataTypes } from 'quick-verse';
 
@@ -19,7 +19,7 @@ globalThis.webViewComponent = function ExtensionTemplate() {
   const [clicks, setClicks] = useState(0);
 
   useEvent<DoStuffEvent>(
-    'extensionTemplate.doStuff',
+    'extensionTemplateHelloWorld.doStuff',
     useCallback(({ count }) => setClicks(count), []),
   );
 
@@ -42,7 +42,7 @@ globalThis.webViewComponent = function ExtensionTemplate() {
   return (
     <>
       <div className="title">
-        Extension Template <span className="framework">React</span>
+        Extension Template Hello World <span className="framework">React</span>
       </div>
       <div>{latestExtensionVerseText}</div>
       <div>{latestQuickVerseText}</div>
@@ -51,12 +51,12 @@ globalThis.webViewComponent = function ExtensionTemplate() {
           onClick={async () => {
             const start = performance.now();
             const result = await papi.commands.sendCommand(
-              'extensionTemplate.doStuff',
-              'Extension Template React Component',
+              'extensionTemplateHelloWorld.doStuff',
+              'Extension Template Hello World React Component',
             );
             setClicks(clicks + 1);
             logger.info(
-              `command:extensionTemplate.doStuff '${result.response}' took ${
+              `command:extensionTemplateHelloWorld.doStuff '${result.response}' took ${
                 performance.now() - start
               } ms`,
             );

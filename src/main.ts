@@ -10,15 +10,15 @@ import type {
   DoStuffEvent,
   ExtensionVerseDataTypes,
   ExtensionVerseSetData,
-} from 'paranext-extension-template';
+} from 'paranext-extension-template-hello-world';
 import type { DataProviderUpdateInstructions } from 'shared/models/data-provider.model';
 import type { ExecutionActivationContext } from 'extension-host/extension-types/extension-activation-context.model';
 import type { IWebViewProvider } from 'shared/models/web-view-provider.model';
 import type { UsfmDataProvider } from 'usfm-data-provider';
-import extensionTemplateReact from './extension-template.web-view?inline';
-import extensionTemplateReact2 from './extension-template-2.web-view?inline';
-import extensionTemplateReactStyles from './extension-template.web-view.scss?inline';
-import extensionTemplateHtml from './extension-template-html.web-view.html?inline';
+import extensionTemplateReact from './extension-template-hello-world.web-view?inline';
+import extensionTemplateReact2 from './extension-template-hello-world-2.web-view?inline';
+import extensionTemplateReactStyles from './extension-template-hello-world.web-view.scss?inline';
+import extensionTemplateHtml from './extension-template-hello-world-html.web-view.html?inline';
 
 const {
   logger,
@@ -291,7 +291,7 @@ const htmlWebViewProvider: IWebViewProvider = {
       );
     return {
       ...savedWebView,
-      title: 'Extension Template HTML',
+      title: 'Extension Template Hello World HTML',
       contentType: 'html' as WebViewContentType.HTML,
       content: extensionTemplateHtml,
     };
@@ -311,7 +311,7 @@ const reactWebViewProvider: IWebViewProvider = {
       );
     return {
       ...savedWebView,
-      title: 'Extension Template React',
+      title: 'Extension Template Hello World React',
       content: extensionTemplateReact,
       styles: extensionTemplateReactStyles,
     };
@@ -331,7 +331,7 @@ const reactWebViewProvider2: IWebViewProvider = {
       );
     return {
       ...savedWebView,
-      title: 'Extension Template React 2',
+      title: 'Extension Template Hello World React 2',
       content: extensionTemplateReact2,
       styles: extensionTemplateReactStyles,
     };
@@ -379,12 +379,12 @@ export async function activate(context: ExecutionActivationContext) {
 
   // Emitter to tell subscribers how many times we have done stuff
   const onDoStuffEmitter = papi.network.createNetworkEventEmitter<DoStuffEvent>(
-    'extensionTemplate.doStuff',
+    'extensionTemplateHelloWorld.doStuff',
   );
 
   let doStuffCount = 0;
   const doStuffCommandPromise = papi.commands.registerCommand(
-    'extensionTemplate.doStuff',
+    'extensionTemplateHelloWorld.doStuff',
     (message: string) => {
       doStuffCount += 1;
       // Inform subscribers of the update

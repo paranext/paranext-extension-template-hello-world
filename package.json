@@ -1,9 +1,9 @@
 {
-  "name": "paranext-extension-template",
+  "name": "paranext-extension-template-hello-world",
   "private": true,
   "version": "0.0.1",
-  "main": "paranext-extension-template.js",
-  "types": "paranext-extension-template.d.ts",
+  "main": "paranext-extension-template-hello-world.js",
+  "types": "paranext-extension-template-hello-world.d.ts",
   "author": "Paranext",
   "license": "MIT",
   "scripts": {
