@@ -423,4 +423,5 @@ export async function activate(context: ExecutionActivationContext) {
 
 export async function deactivate() {
   logger.info('Extension template is deactivating!');
+  return true;
 }
