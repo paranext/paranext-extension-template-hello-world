@@ -1,13 +1,8 @@
 import papi, { logger } from 'papi-frontend';
 import { useData, useDataProvider, useEvent } from 'papi-frontend/react';
 import { useCallback, useState } from 'react';
-import type {
-  DoStuffEvent,
-  ExtensionVerseDataProvider,
-  ExtensionVerseDataTypes,
-} from 'paranext-extension-template-hello-world';
+import type { DoStuffEvent } from 'paranext-extension-template-hello-world';
 import { Button } from 'papi-components';
-import type { QuickVerseDataTypes } from 'quick-verse';
 
 globalThis.webViewComponent = function ExtensionTemplate2() {
   const [clicks, setClicks] = useState(0);
@@ -17,18 +12,13 @@ globalThis.webViewComponent = function ExtensionTemplate2() {
     useCallback(({ count }) => setClicks(count), []),
   );
 
-  const extensionVerseDataProvider = useDataProvider<ExtensionVerseDataProvider>(
-    'paranextExtensionTemplate.quickVerse',
-  );
+  const extensionVerseDataProvider = useDataProvider('paranextExtensionTemplate.quickVerse');
 
-  const [latestExtensionVerseText] = useData.Verse<ExtensionVerseDataTypes, 'Verse'>(
+  const [latestExtensionVerseText] = useData<'paranextExtensionTemplate.quickVerse'>(
     extensionVerseDataProvider,
-    'latest',
-    'Loading latest Scripture text from extension template...',
-  );
+  ).Verse('latest', 'Loading latest Scripture text from extension template...');
 
-  const [latestQuickVerseText] = useData.Verse<QuickVerseDataTypes, 'Verse'>(
-    'quickVerse.quickVerse',
+  const [latestQuickVerseText] = useData('quickVerse.quickVerse').Verse(
     'latest',
     'Loading latest Scripture text from extension template...',
   );

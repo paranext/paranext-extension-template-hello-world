@@ -1,7 +1,7 @@
-import type { DataProviderDataType } from 'shared/models/data-provider.model';
-import type IDataProvider from 'shared/models/data-provider.interface';
-
 declare module 'paranext-extension-template-hello-world' {
+  import type { DataProviderDataType } from 'shared/models/data-provider.model';
+  import type IDataProvider from 'shared/models/data-provider.interface';
+
   export type ExtensionVerseSetData = string | { text: string; isHeresy: boolean };
 
   export type ExtensionVerseDataTypes = {
@@ -20,10 +20,16 @@ declare module 'paranext-extension-template-hello-world' {
 }
 
 declare module 'papi-shared-types' {
+  import type { ExtensionVerseDataProvider } from 'paranext-extension-template-hello-world';
+
   export interface CommandHandlers {
     'extensionTemplateHelloWorld.doStuff': (message: string) => {
       response: string;
       occurrence: number;
     };
+  }
+
+  export interface DataProviders {
+    'paranextExtensionTemplate.quickVerse': ExtensionVerseDataProvider;
   }
 }
