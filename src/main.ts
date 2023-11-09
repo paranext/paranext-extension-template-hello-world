@@ -1,5 +1,5 @@
 import { VerseRef } from '@sillsdev/scripture';
-import papi from 'papi-backend';
+import papi, { logger } from 'papi-backend';
 import type IDataProviderEngine from 'shared/models/data-provider-engine.model';
 import type {
   SavedWebViewDefinition,
@@ -15,13 +15,12 @@ import type { DataProviderUpdateInstructions } from 'shared/models/data-provider
 import type { ExecutionActivationContext } from 'extension-host/extension-types/extension-activation-context.model';
 import type { IWebViewProvider } from 'shared/models/web-view-provider.model';
 import type { UsfmDataProvider } from 'usfm-data-provider';
-import extensionTemplateReact from './extension-template-hello-world.web-view?inline';
-import extensionTemplateReact2 from './extension-template-hello-world-2.web-view?inline';
-import extensionTemplateReactStyles from './extension-template-hello-world.web-view.scss?inline';
-import extensionTemplateHtml from './extension-template-hello-world-html.web-view.html?inline';
+import extensionTemplateReact from './extension-template.web-view?inline';
+import extensionTemplateReact2 from './extension-template-2.web-view?inline';
+import extensionTemplateReactStyles from './extension-template.web-view.scss?inline';
+import extensionTemplateHtml from './extension-template-html.web-view.html?inline';
 
 const {
-  logger,
   dataProvider: { DataProviderEngine },
 } = papi;
 
