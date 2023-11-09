@@ -36,8 +36,11 @@
     <div id="bill-any-age-update-count">Any Age Updates (via Bill): 0</div>
     <div id="bill-age-update-count">Bill Age Updates: 0</div>
     <script>
+      const papi = require('papi-frontend');
+      const { logger } = require('papi-frontend');
+
       function print(input) {
-        papi.logger.info(input);
+        logger.info(input);
       }
 
       const dataProviderPromise = papi.dataProvider.get('helloSomeone.people');

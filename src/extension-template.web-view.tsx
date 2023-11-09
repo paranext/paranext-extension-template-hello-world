@@ -1,4 +1,5 @@
-import papi from 'papi-frontend';
+import papi, { logger } from 'papi-frontend';
+import { useData, useDataProvider, useEvent } from 'papi-frontend/react';
 import { useCallback, useState } from 'react';
 import type {
   DoStuffEvent,
@@ -7,13 +8,6 @@ import type {
 } from 'paranext-extension-template-hello-world';
 import { Button } from 'papi-components';
 import type { QuickVerseDataTypes } from 'quick-verse';
-
-const {
-  react: {
-    hooks: { useData, useDataProvider, useEvent },
-  },
-  logger,
-} = papi;
 
 globalThis.webViewComponent = function ExtensionTemplate() {
   const [clicks, setClicks] = useState(0);
