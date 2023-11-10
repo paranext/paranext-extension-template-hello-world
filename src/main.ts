@@ -1,5 +1,5 @@
 import { VerseRef } from '@sillsdev/scripture';
-import papi, { logger } from 'papi-backend';
+import papi, { logger, DataProviderEngine } from 'papi-backend';
 import type IDataProviderEngine from 'shared/models/data-provider-engine.model';
 import type {
   SavedWebViewDefinition,
@@ -14,15 +14,10 @@ import type {
 import type { DataProviderUpdateInstructions } from 'shared/models/data-provider.model';
 import type { ExecutionActivationContext } from 'extension-host/extension-types/extension-activation-context.model';
 import type { IWebViewProvider } from 'shared/models/web-view-provider.model';
-import type { UsfmDataProvider } from 'usfm-data-provider';
 import extensionTemplateReact from './extension-template.web-view?inline';
 import extensionTemplateReact2 from './extension-template-2.web-view?inline';
 import extensionTemplateReactStyles from './extension-template.web-view.scss?inline';
 import extensionTemplateHtml from './extension-template-html.web-view.html?inline';
-
-const {
-  dataProvider: { DataProviderEngine },
-} = papi;
 
 // eslint-disable-next-line
 console.log(process.env.NODE_ENV);
@@ -80,7 +75,7 @@ class QuickVerseDataProviderEngine
   /** Latest updated verse reference */
   latestVerseRef = 'JHN 11:35';
 
-  usfmDataProviderPromise = papi.dataProvider.get<UsfmDataProvider>('usfm');
+  usfmDataProviderPromise = papi.dataProvider.get('usfm');
 
   /** Number of times any verse has been modified by a user this session */
   heresyCount = 0;
@@ -145,8 +140,9 @@ class QuickVerseDataProviderEngine
    * Note: this method gets layered over so that you can run `this.setVerse` inside this data
    * provider engine, and it will send updates after returning.
    *
-   * Note: this method is used when someone uses the `useData.Verse` hook on the data
-   * provider papi creates for this engine.
+   * Note: this method is used when someone uses the
+   * `useData('paranextExtensionTemplate.quickVerse').Verse` hook on the data provider papi creates
+   * for this engine.
    */
   async setVerse(verseRef: string, data: ExtensionVerseSetData) {
     return this.setInternal(verseRef, data);
@@ -163,8 +159,9 @@ class QuickVerseDataProviderEngine
    * Note: this method gets layered over so that you can run `this.setHeresy` inside this data
    * provider engine, and it will send updates after returning.
    *
-   * Note: this method is used when someone uses the `useData.Heresy` hook on the data
-   * provider papi creates for this engine.
+   * Note: this method is used when someone uses the
+   * `useData('paranextExtensionTemplate.quickVerse').Heresy` hook on the data provider papi creates
+   * for this engine.
    */
   async setHeresy(verseRef: string, verseText: string) {
     return this.setInternal(verseRef, { text: verseText, isHeresy: true });
@@ -175,8 +172,9 @@ class QuickVerseDataProviderEngine
    * @param verseRef verse reference to get
    * @returns verse contents at this reference
    *
-   * Note: this method is used when someone uses the `useData.Verse` hook or the
-   * `subscribeVerse` method on the data provider papi creates for this engine.
+   * Note: this method is used when someone uses the
+   * `useData('paranextExtensionTemplate.quickVerse').Verse` hook or the `subscribeVerse` method on
+   * the data provider papi creates for this engine.
    */
   getVerse = async (verseRef: string) => {
     // Just get notifications of updates with the 'notify' selector
@@ -219,8 +217,9 @@ class QuickVerseDataProviderEngine
    * @param verseRef verse reference to get
    * @returns verse contents at this reference
    *
-   * Note: this method is used when someone uses the `useData.Heresy` hook or the
-   * `subscribeHeresy` method on the data provider papi creates for this engine.
+   * Note: this method is used when someone uses the
+   * `useData('paranextExtensionTemplate.quickVerse').Heresy` hook or the `subscribeHeresy` method
+   * on the data provider papi creates for this engine.
    */
   async getHeresy(verseRef: string) {
     return this.getVerse(verseRef);
@@ -253,8 +252,9 @@ class QuickVerseDataProviderEngine
    *
    * @example To get the contents of John 3, you can use `getChapter(['John', 3])`.
    *
-   * Note: this method is used when someone uses the `useData.Chapter` hook or the
-   * `subscribeChapter` method on the data provider papi creates for this engine.
+   * Note: this method is used when someone uses the
+   * `useData('paranextExtensionTemplate.quickVerse').Chapter` hook or the `subscribeChapter` method
+   * on the data provider papi creates for this engine.
    */
   async getChapter(chapterInfo: [book: string, chapter: number]) {
     const [book, chapter] = chapterInfo;
@@ -356,7 +356,7 @@ export async function activate(context: ExecutionActivationContext) {
   }
   engine.heresyCount = storedHeresyCount;
 
-  const quickVerseDataProviderPromise = papi.dataProvider.registerEngine<ExtensionVerseDataTypes>(
+  const quickVerseDataProviderPromise = papi.dataProvider.registerEngine(
     'paranextExtensionTemplate.quickVerse',
     engine,
   );
