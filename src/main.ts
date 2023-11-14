@@ -5,7 +5,7 @@ import type {
   SavedWebViewDefinition,
   WebViewContentType,
   WebViewDefinition,
-} from 'shared/data/web-view.model';
+} from 'shared/models/web-view.model';
 import type {
   DoStuffEvent,
   ExtensionVerseDataTypes,
