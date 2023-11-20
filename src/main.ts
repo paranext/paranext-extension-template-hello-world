@@ -47,7 +47,7 @@ logger.info('Extension template is importing!');
  *  - Pros
  *    - Can freely add properties and methods without specifying them in an extra type
  *    - Can use private methods (prefix with `#`) that are automatically ignored by papi
- *    - Can use @papi.dataProvider.decorators.ignore to tell papi to ignore methods
+ *    - Can use @papi.dataProviders.decorators.ignore to tell papi to ignore methods
  *    - Can extend `DataProviderEngine` so TypeScript will understand you can call
  * `this.notifyUpdate` without specifying a `notifyUpdate` function
  *    - Can easily create multiple data providers from the same engine if you have two independent
@@ -75,7 +75,7 @@ class QuickVerseDataProviderEngine
   /** Latest updated verse reference */
   latestVerseRef = 'JHN 11:35';
 
-  usfmDataProviderPromise = papi.dataProvider.get('usfm');
+  usfmDataProviderPromise = papi.dataProviders.get('usfm');
 
   /** Number of times any verse has been modified by a user this session */
   heresyCount = 0;
@@ -102,7 +102,7 @@ class QuickVerseDataProviderEngine
    * as well. However, we added the `ignore` decorator, so papi will not pick it up. Alternatively,
    * you can name it anything that doesn't start with `set` like `_setInternal` or `internalSet`.
    */
-  @papi.dataProvider.decorators.ignore
+  @papi.dataProviders.decorators.ignore
   async setInternal(
     selector: string,
     data: ExtensionVerseSetData,
@@ -356,7 +356,7 @@ export async function activate(context: ExecutionActivationContext) {
   }
   engine.heresyCount = storedHeresyCount;
 
-  const quickVerseDataProviderPromise = papi.dataProvider.registerEngine(
+  const quickVerseDataProviderPromise = papi.dataProviders.registerEngine(
     'paranextExtensionTemplate.quickVerse',
     engine,
   );
