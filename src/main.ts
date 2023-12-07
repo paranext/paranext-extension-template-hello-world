@@ -1,19 +1,19 @@
 import { VerseRef } from '@sillsdev/scripture';
-import papi, { logger, DataProviderEngine } from 'papi-backend';
-import type IDataProviderEngine from 'shared/models/data-provider-engine.model';
-import type {
+import papi, { logger, DataProviderEngine } from '@papi/backend';
+import {
+  DataProviderUpdateInstructions,
+  ExecutionActivationContext,
+  IDataProviderEngine,
+  IWebViewProvider,
   SavedWebViewDefinition,
   WebViewContentType,
   WebViewDefinition,
-} from 'shared/models/web-view.model';
+} from '@papi/core';
 import type {
   DoStuffEvent,
   ExtensionVerseDataTypes,
   ExtensionVerseSetData,
 } from 'paranext-extension-template-hello-world';
-import type { DataProviderUpdateInstructions } from 'shared/models/data-provider.model';
-import type { ExecutionActivationContext } from 'extension-host/extension-types/extension-activation-context.model';
-import type { IWebViewProvider } from 'shared/models/web-view-provider.model';
 import extensionTemplateReact from './extension-template.web-view?inline';
 import extensionTemplateReact2 from './extension-template-2.web-view?inline';
 import extensionTemplateReactStyles from './extension-template.web-view.scss?inline';

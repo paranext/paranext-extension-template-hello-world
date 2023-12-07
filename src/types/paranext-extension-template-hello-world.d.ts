@@ -1,6 +1,5 @@
 declare module 'paranext-extension-template-hello-world' {
-  import type { DataProviderDataType } from 'shared/models/data-provider.model';
-  import type IDataProvider from 'shared/models/data-provider.interface';
+  import { DataProviderDataType, IDataProvider } from '@papi/core';
 
   export type ExtensionVerseSetData = string | { text: string; isHeresy: boolean };
 
