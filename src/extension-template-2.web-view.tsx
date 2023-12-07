@@ -1,5 +1,5 @@
-import papi, { logger } from 'papi-frontend';
-import { useData, useDataProvider, useEvent } from 'papi-frontend/react';
+import papi, { logger } from '@papi/frontend';
+import { useData, useDataProvider, useEvent } from '@papi/frontend/react';
 import { useCallback, useState } from 'react';
 import type { DoStuffEvent } from 'paranext-extension-template-hello-world';
 import { Button } from 'papi-components';
