@@ -1,14 +1,14 @@
 import papi, { logger } from '@papi/frontend';
-import { useData, useDataProvider, useEvent } from '@papi/frontend/react';
+import { useData, useDataProvider } from '@papi/frontend/react';
 import { useCallback, useState } from 'react';
 import type { DoStuffEvent } from 'paranext-extension-template-hello-world';
-import { Button } from 'papi-components';
+import { Button, useEvent } from 'platform-bible-react';
 
 globalThis.webViewComponent = function ExtensionTemplate() {
   const [clicks, setClicks] = useState(0);
 
   useEvent<DoStuffEvent>(
-    'extensionTemplateHelloWorld.doStuff',
+    papi.network.getNetworkEvent('extensionTemplateHelloWorld.doStuff'),
     useCallback(({ count }) => setClicks(count), []),
   );
 
