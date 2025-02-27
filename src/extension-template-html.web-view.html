@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <style>
@@ -131,9 +131,7 @@
           () => {
             peopleUpdateCount += 1;
             const peopleUpdateCountDiv = document.getElementById('people-update-count');
-            peopleUpdateCountDiv.textContent = htmlEncode(
-              `People Updates: ${peopleUpdateCount}`,
-            );
+            peopleUpdateCountDiv.textContent = htmlEncode(`People Updates: ${peopleUpdateCount}`);
           },
           { retrieveDataImmediately: false },
         );
@@ -185,9 +183,7 @@
         peopleDataProvider.subscribeAge('bIlL', () => {
           billAgeUpdateCount += 1;
           const billAgeUpdateCountDiv = document.getElementById('bill-age-update-count');
-          billAgeUpdateCountDiv.textContent = htmlEncode(
-            `Bill Age Updates: ${billAgeUpdateCount}`,
-          );
+          billAgeUpdateCountDiv.textContent = htmlEncode(`Bill Age Updates: ${billAgeUpdateCount}`);
         });
       }
 
