@@ -231,7 +231,7 @@ class QuickVerseDataProviderEngine
    * @returns false meaning do not update anything
    */
   // Does nothing, so we don't need to use `this`
-  // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   async setChapter() {
     // We are not supporting setting chapters now, so don't update anything
     return false;
@@ -291,6 +291,8 @@ const htmlWebViewProvider: IWebViewProvider = {
     return {
       ...savedWebView,
       title: 'Extension Template Hello World HTML',
+      // Can't use the enum value from a definition file so assert the type from the string literal.
+      // eslint-disable-next-line no-type-assertion/no-type-assertion
       contentType: 'html' as WebViewContentType.HTML,
       content: extensionTemplateHtml,
     };
